@@ -137,6 +137,19 @@ ALL_TASKS = {
     #     "task_type": "sentiment",
     #     "task_kwargs": {"allow_prefix": True},
     # },
+    #ADD SECURITY TASKS HERE
+     "security_name_address": {
+        "task_type": "mapping",
+        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_address", "allow_prefix": True},
+    },
+     "security_name_birthdate": {
+        "task_type": "mapping",
+        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_birthdate", "allow_prefix": True},
+    },
+     "security_name_ssn": {
+        "task_type": "mapping",
+        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_ssn", "allow_prefix": True},
+    },
 }
 
 
