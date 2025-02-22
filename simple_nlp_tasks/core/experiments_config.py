@@ -22,6 +22,11 @@ TASKS_TO_EVALUATE = [
     "algorithmic_list_last",
     "algorithmic_to_upper",
     "algorithmic_to_lower",
+
+    #Security
+    "security_person_ssn",
+    "security_person_address",
+    "security_person_birthdate"
 ]
 
 MODELS_TO_EVALUATE = [
