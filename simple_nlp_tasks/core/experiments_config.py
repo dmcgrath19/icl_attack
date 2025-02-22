@@ -2,7 +2,7 @@ TASKS_TO_EVALUATE = [
     # # One for each category
     # "translation_fr_en",
     # "linguistic_present_simple_gerund",
-    # "knowledge_country_capital",
+    "knowledge_country_capital",
     # "algorithmic_next_letter",
     # # Translation
     # "translation_es_en",
@@ -23,10 +23,10 @@ TASKS_TO_EVALUATE = [
     # "algorithmic_to_upper",
     # "algorithmic_to_lower",
 
-    #Security
-    "security_person_ssn",
-    "security_person_address",
-    "security_person_birthdate"
+    # #Security
+    # "security_person_ssn",
+    # "security_person_address",
+    # "security_person_birthdate"
 ]
 
 MODELS_TO_EVALUATE = [
