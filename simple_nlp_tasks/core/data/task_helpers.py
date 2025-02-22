@@ -137,7 +137,7 @@ ALL_TASKS = {
     #     "task_type": "sentiment",
     #     "task_kwargs": {"allow_prefix": True},
     # },
-    #ADD SECURITY TASKS HERE
+    #ADD SECURITY TASKS HERE . we treat this as a mapping task
      "security_name_address": {
         "task_type": "mapping",
         "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_address", "allow_prefix": True},
