@@ -5,7 +5,7 @@ from typing import Literal, Tuple
 import torch
 from accelerate import init_empty_weights
 from accelerate.utils.modeling import infer_auto_device_map, get_balanced_memory
-from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizer, MambaForCausalLM
 
 from core.models.utils.llm_layers import get_layers, get_layers_path
 from mamba.model import Mamba
@@ -165,10 +165,15 @@ def load_mamba(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, Pr
     #     'state-spaces/mamba-790m'
     #     'state-spaces/mamba-370m'
     #     'state-spaces/mamba-130m'
-    model = Mamba.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
+    # model = Mamba.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
+    # tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
+    # tokenizer.pad_token = tokenizer.eos_token
+    # return model, tokenizer
+    model = MambaForCausalLM.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
     tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     return model, tokenizer
+
 
 
 def load_rwkv(model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
