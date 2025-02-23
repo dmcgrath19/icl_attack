@@ -169,7 +169,7 @@ def load_mamba(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, Pr
     # tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
     # tokenizer.pad_token = tokenizer.eos_token
     # return model, tokenizer
-    model = MambaForCausalLM.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
+    model = MambaForCausalLM.from_pretrained(f'state-spaces/{model_type}-{model_variant}-hf')
     tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     return model, tokenizer
