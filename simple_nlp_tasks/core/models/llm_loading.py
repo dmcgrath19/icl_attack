@@ -130,6 +130,10 @@ def load_model_and_tokenizer(
         device = 'cuda:0' if not load_to_cpu else 'cpu'
         model, tokenizer = load_mamba(model_type, model_variant)
         model = model.to(device)
+    elif model_type == 'pythia':
+        device = 'cuda:0' if not load_to_cpu else 'cpu'
+        model, tokenizer = load_pythia(model_type, model_variant)
+        model = model.to(device)
     elif model_type == 'rwkv':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
         model, tokenizer = load_rwkv(model_variant)
@@ -137,6 +141,19 @@ def load_model_and_tokenizer(
     else:
         tokenizer = load_tokenizer(model_type, model_variant)
         model = load_model(model_type, model_variant, load_to_cpu=load_to_cpu)
+    return model, tokenizer
+
+
+def load_pythia(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
+    # Example model variants:
+    # 'pythia-12b', 'pythia-6.9b', 'pythia-2.8b', 'pythia-1.4b', 'pythia-1b', 'pythia-800m', 'pythia-410m', 'pythia-160m', 'pythia-70m'
+    
+    model_name = f"EleutherAI/{model_type}-{model_variant}"
+    
+    model = AutoModelForCausalLM.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, padding_side='left')
+    tokenizer.pad_token = tokenizer.eos_token 
+    
     return model, tokenizer
 
 
