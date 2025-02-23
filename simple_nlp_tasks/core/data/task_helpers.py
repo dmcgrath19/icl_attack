@@ -133,6 +133,10 @@ ALL_TASKS = {
         "task_type": "mapping",
         "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "location_religion", "allow_prefix": True},
     },
+    "knowledge_location_language": {
+        "task_type": "mapping",
+        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "location_language", "allow_prefix": True},
+    },
     # "sentiment": {
     #     "task_type": "sentiment",
     #     "task_kwargs": {"allow_prefix": True},

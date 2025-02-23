@@ -13,7 +13,9 @@ TASKS_TO_EVALUATE = [
     # "linguistic_plural_singular",
     # "linguistic_antonyms",
     # # Knowledge
-    # "knowledge_person_language",
+    "knowledge_person_language",
+    "knowledge_location_language"
+    #"knowledge_person_prof",
     # "knowledge_location_continent",
     # "knowledge_location_religion",
     # # Algorithmic
