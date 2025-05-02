@@ -1,17 +1,15 @@
-Builds off of the Work for ICL in:
+# ICL in the context of Data Extraction for Private Information (Aka, ICL Attack)
 
-# Is Mamba Capable of In-Context Learning?
-Code repository for their paper ["Is Mamba Capable of In-Context Learning?"](https://arxiv.org/abs/2402.03170)
+
+Based off of the work done in:
+
+["Is Mamba Capable of In-Context Learning?"](https://arxiv.org/abs/2402.03170)
 by Riccardo Grazzi, Julien Siems, Simon Schrodi, Thomas Brox, and Frank Hutter.
 
-which is based off of the work created from 
+which bases its work/code on
 
- by Hendel et al. (2023)
-Please see the detailed readme under /simple_nlp_tasks/README.md for details on how to reproduce our experiments
+Hendel et al. (2023)
 
-## Experimental Setup
-
-Our experiments are split into two parts - simple function approximation and natural language processing (NLP) tasks. 
 
 
 ## References:
