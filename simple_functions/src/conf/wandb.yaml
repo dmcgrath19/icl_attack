@@ -1,5 +1,0 @@
-wandb:
-    project: in-context-mamba
-    entity: in-context-mamba
-    notes:
-    log_every_steps: 100
