@@ -142,17 +142,21 @@ ALL_TASKS = {
     #     "task_kwargs": {"allow_prefix": True},
     # },
     #ADD SECURITY TASKS HERE . we treat this as a mapping task
-     "security_name_address": {
+     "security_name_nationality": {
         "task_type": "mapping",
-        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_address", "allow_prefix": True},
+        "task_kwargs": {"mapping_type": "security", "mapping_name": "name_nationality", "allow_prefix": True},
     },
-     "security_name_birthdate": {
+     "security_name_profession": {
         "task_type": "mapping",
-        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_birthdate", "allow_prefix": True},
+        "task_kwargs": {"mapping_type": "security", "mapping_name": "name_profession", "allow_prefix": True},
+    },
+    "security_name_city": {
+        "task_type": "mapping",
+        "task_kwargs": {"mapping_type": "security", "mapping_name": "name_city", "allow_prefix": True},
     },
      "security_name_ssn": {
         "task_type": "mapping",
-        "task_kwargs": {"mapping_type": "knowledge", "mapping_name": "name_ssn", "allow_prefix": True},
+        "task_kwargs": {"mapping_type": "security", "mapping_name": "name_ssn", "allow_prefix": True},
     },
 }
 

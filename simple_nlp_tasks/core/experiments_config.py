@@ -2,7 +2,7 @@ TASKS_TO_EVALUATE = [
     # # One for each category
     # "translation_fr_en",
     # "linguistic_present_simple_gerund",
-    "knowledge_country_capital",
+    # "knowledge_country_capital",
     # "algorithmic_next_letter",
     # # Translation
     # "translation_es_en",
@@ -13,8 +13,8 @@ TASKS_TO_EVALUATE = [
     # "linguistic_plural_singular",
     # "linguistic_antonyms",
     # # Knowledge
-    "knowledge_person_language",
-    "knowledge_location_language"
+    # "knowledge_person_language",
+    # "knowledge_location_language"
     #"knowledge_person_prof",
     # "knowledge_location_continent",
     # "knowledge_location_religion",
@@ -26,9 +26,10 @@ TASKS_TO_EVALUATE = [
     # "algorithmic_to_lower",
 
     # #Security
-    # "security_person_ssn",
-    # "security_person_address",
-    # "security_person_birthdate"
+    "security_name_city",
+    "security_name_ssn",
+    "security_name_profession",
+    "security_name_nationality"
 ]
 
 MODELS_TO_EVALUATE = [
