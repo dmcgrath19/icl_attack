@@ -135,7 +135,7 @@ def load_model_and_tokenizer(
         model = model.to(device)
     elif model_type == 'gpt-neo':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
-        model, tokenizer = load_gpt_neo(model_variant, model_variant)
+        model, tokenizer = load_gpt_neo(model_type, model_variant)
         model = model.to(device)
     elif model_type == 'rwkv':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
