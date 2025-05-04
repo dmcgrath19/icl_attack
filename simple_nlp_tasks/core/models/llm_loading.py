@@ -8,7 +8,6 @@ from accelerate.utils.modeling import infer_auto_device_map, get_balanced_memory
 from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer, PreTrainedModel, PreTrainedTokenizer, MambaForCausalLM
 
 from core.models.utils.llm_layers import get_layers, get_layers_path
-from mamba.model import Mamba
 
 BASE_KWARGS = {
     "torch_dtype": torch.float16 if torch.cuda.is_available() else torch.float32,
