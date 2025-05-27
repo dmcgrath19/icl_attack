@@ -125,9 +125,10 @@ def load_tokenizer(model_type: str, model_variant: str) -> PreTrainedTokenizer:
 def load_model_and_tokenizer(
     model_type: str, model_variant: str, load_to_cpu: bool = False
 ) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
-    if model_type == 'mamba':
+    if model_type in {'mamba', 'mamba2'}:
         device = 'cuda:0' if not load_to_cpu else 'cpu'
-        model, tokenizer = load_mamba(model_type, model_variant)
+        is_mamba2 = (model_type == 'mamba2')
+        model, tokenizer = load_mamba("mamba", model_variant, isMamba2=is_mamba2)
         model = model.to(device)
     elif model_type == 'pythia':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
@@ -170,6 +171,26 @@ def load_pythia(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, P
     
     return model, tokenizer
 
+
+def load_mamba(model_type: str, model_variant: str, isMamba2: bool = False) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
+    # One of:
+    #     'state-spaces/mamba-2.8b-slimpj'
+    #     'state-spaces/mamba-2.8b'
+    #     'state-spaces/mamba-1.4b'
+    #     'state-spaces/mamba-790m'
+    #     'state-spaces/mamba-370m'
+    #     'state-spaces/mamba-130m' 
+    # model = Mamba.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
+    # tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
+    # tokenizer.pad_token = tokenizer.eos_token
+    # return model, tokenizer
+    
+    repo_location = 'AntonV' if isMamba2 else 'state-spaces'
+
+    model = MambaForCausalLM.from_pretrained(f'{repo_location}/{model_type}-{model_variant}-hf')
+    tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
+    tokenizer.pad_token = tokenizer.eos_token
+    return model, tokenizer
 
 def load_mamba(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
     # One of:
