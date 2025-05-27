@@ -128,7 +128,7 @@ def load_model_and_tokenizer(
     if model_type in {'mamba', 'mamba2'}:
         device = 'cuda:0' if not load_to_cpu else 'cpu'
         is_mamba2 = (model_type == 'mamba2')
-        model, tokenizer = load_mamba("mamba", model_variant, isMamba2=is_mamba2)
+        model, tokenizer = load_mamba(model_type, model_variant, isMamba2=is_mamba2)
         model = model.to(device)
     elif model_type == 'pythia':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
