@@ -171,7 +171,6 @@ def load_pythia(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, P
     
     return model, tokenizer
 
-
 def load_mamba(model_type: str, model_variant: str, isMamba2: bool = False) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
     # One of:
     #     'state-spaces/mamba-2.8b-slimpj'
@@ -187,29 +186,10 @@ def load_mamba(model_type: str, model_variant: str, isMamba2: bool = False) -> T
     
     repo_location = 'AntonV' if isMamba2 else 'state-spaces'
 
-    model = MambaForCausalLM.from_pretrained(f'{repo_location}/{model_type}-{model_variant}-hf')
+    model = AutoModelForCausalLM.from_pretrained(f'{repo_location}/{model_type}-{model_variant}-hf')
     tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     return model, tokenizer
-
-def load_mamba(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
-    # One of:
-    #     'state-spaces/mamba-2.8b-slimpj'
-    #     'state-spaces/mamba-2.8b'
-    #     'state-spaces/mamba-1.4b'
-    #     'state-spaces/mamba-790m'
-    #     'state-spaces/mamba-370m'
-    #     'state-spaces/mamba-130m'
-    # model = Mamba.from_pretrained(f'state-spaces/{model_type}-{model_variant}')
-    # tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
-    # tokenizer.pad_token = tokenizer.eos_token
-    # return model, tokenizer
-    model = MambaForCausalLM.from_pretrained(f'state-spaces/{model_type}-{model_variant}-hf')
-    tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
-    tokenizer.pad_token = tokenizer.eos_token
-    return model, tokenizer
-
-
 
 def load_rwkv(model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
     model = AutoModelForCausalLM.from_pretrained(f"RWKV/rwkv-4-{model_variant}-pile",
