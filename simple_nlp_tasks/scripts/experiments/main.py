@@ -164,7 +164,11 @@ def main():
             model_type, model_variant = MODELS_TO_EVALUATE[model_num]
             batched = True
         elif len(sys.argv) >= 3:
-            model_type, model_variant, batched, num_examples = sys.argv[1:]
+            if('/' in sys.argv[1]):
+                model_type, batched, num_examples = sys.argv[1:]
+                model_variant = None
+            else:
+                model_type, model_variant, batched, num_examples = sys.argv[1:]
             batched = eval(batched)
             num_examples = eval(num_examples)
         run_main_experiment(model_type, model_variant, num_examples=num_examples, batched=batched)

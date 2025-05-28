@@ -123,9 +123,13 @@ def load_tokenizer(model_type: str, model_variant: str) -> PreTrainedTokenizer:
 
 
 def load_model_and_tokenizer(
-    model_type: str, model_variant: str, load_to_cpu: bool = False
+    model_type: str, model_variant: str = None, load_to_cpu: bool = False
 ) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
-    if model_type in {'mamba', 'mamba2'}:
+    if not model_variant:
+        device = 'cuda:0' if not load_to_cpu else 'cpu'
+        model, tokenizer = load_model_by_name(model_type)
+        model = model.to(device)
+    elif model_type in {'mamba', 'mamba2'}:
         device = 'cuda:0' if not load_to_cpu else 'cpu'
         is_mamba2 = (model_type == 'mamba2')
         model, tokenizer = load_mamba(model_type, model_variant, isMamba2=is_mamba2)
@@ -147,7 +151,12 @@ def load_model_and_tokenizer(
         model = load_model(model_type, model_variant, load_to_cpu=load_to_cpu)
     return model, tokenizer
 
-
+def load_model_by_name(model_name: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
+    model = AutoModelForCausalLM.from_pretrained(model_name,trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True, padding_side='left')
+    tokenizer.pad_token = tokenizer.eos_token
+    return model, tokenizer
+    
 def load_gpt_neo(model_type: str, model_variant: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
     # Example model variants:
     # 'pythia-12b', 'pythia-6.9b', 'pythia-2.8b', 'pythia-1.4b', 'pythia-1b', 'pythia-800m', 'pythia-410m', 'pythia-160m', 'pythia-70m'
@@ -185,9 +194,8 @@ def load_mamba(model_type: str, model_variant: str, isMamba2: bool = False) -> T
     # return model, tokenizer
     
     repo_location = 'AntonV' if isMamba2 else 'state-spaces'
-
     model = AutoModelForCausalLM.from_pretrained(f'{repo_location}/{model_type}-{model_variant}-hf')
-    tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-neox-20b', padding_side='left')
+    tokenizer = AutoTokenizer.from_pretrained(f'{repo_location}/{model_type}-{model_variant}-hf', padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     return model, tokenizer
 
