@@ -123,11 +123,11 @@ def load_tokenizer(model_type: str, model_variant: str) -> PreTrainedTokenizer:
 
 
 def load_model_and_tokenizer(
-    model_type: str, model_variant: str = None, load_to_cpu: bool = False
+    model_type: str, model_variant: str, load_to_cpu: bool = False
 ) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
-    if not model_variant:
+    if model_type == 'other':
         device = 'cuda:0' if not load_to_cpu else 'cpu'
-        model, tokenizer = load_model_by_name(model_type)
+        model, tokenizer = load_model_by_name(model_variant)
         model = model.to(device)
     elif model_type in {'mamba', 'mamba2'}:
         device = 'cuda:0' if not load_to_cpu else 'cpu'
@@ -152,7 +152,7 @@ def load_model_and_tokenizer(
     return model, tokenizer
 
 def load_model_by_name(model_name: str) -> Tuple[PreTrainedModel, PreTrainedTokenizer]:
-    model = AutoModelForCausalLM.from_pretrained(model_name,trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True)
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True, padding_side='left')
     tokenizer.pad_token = tokenizer.eos_token
     return model, tokenizer
