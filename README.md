@@ -10,7 +10,6 @@ Our research builds on and extends prior studies on ICL, particularly those by G
 - **Grazzi et al. (2024):**  
   *"Is Mamba Capable of In-Context Learning?"*  
   This study analyzes the ICL capabilities of Mamba, a recent SSM-based model, comparing it to transformers and grounding its findings on the theoretical frameworks introduced by Hendel et al. (2023).  
-  [https://arxiv.org/abs/2402.03170](https://arxiv.org/abs/2402.03170)
 
 - **Hendel et al. (2023):**  
   *"In-Context Learning Creates Task Vectors"*  
